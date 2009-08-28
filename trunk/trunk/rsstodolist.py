@@ -5,6 +5,8 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext import db
+from google.appengine.api import urlfetch
+import re
 
 import os
 from google.appengine.ext.webapp import template
@@ -16,10 +18,21 @@ class Feed(db.Model):
   creation_date = db.DateTimeProperty(auto_now_add=True)  
 
 
-def addUrl(add_url):
+def addUrl(url, title):
   feed = Feed()
-  feed.url = add_url
-  feed.title = add_url
+  feed.url = url
+  if title:
+    feed.title = title
+  else:
+    result = urlfetch.fetch(url, allow_truncated=True)
+    if result.status_code == 200:
+       m = re.search('(?<=<title>).*(?=</title>)', result.content)
+       if m.group(0):
+         print m.group(0)
+         feed.title = m.group(0)
+       else:
+         feed.title = url
+
   feed.put()
 
 def render(self):
@@ -30,18 +43,25 @@ def render(self):
   self.response.out.write(template.render(path,	{ 'feeds': feeds } ))
 
 class MainPage(webapp.RequestHandler):
-  def get(self):
-    add_url = self.request.get('add')
+  def get(self): 
+    render(self);
 
-    if add_url:
-      addUrl(add_url)
- 
+class AddPage(webapp.RequestHandler):
+  def get(self): 
+    url = self.request.get('url')
+    title  = self.request.get('title')
+
+    if url:
+      addUrl(url, title)
+
     render(self);
 
 
-application = webapp.WSGIApplication(
-													[('/', MainPage)]
-												)
+
+application = webapp.WSGIApplication([
+													('/', MainPage),
+													('/add', AddPage)
+												])
 
 def main():
   run_wsgi_app(application)
