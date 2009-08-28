@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>RSS Todo List</title>
+    <link>http://rsstodolist.appspot.com</link>
+    <description>RSS 2.0 feed containing your todolist items</description>
+    <language>en-us</language>
+    <generator>rssGoogleCode</generator>
+    <webMaster>paulgreg@gmail.com</webMaster>
+	 {% for feed in feeds %}
+	 	<item>
+			<title>{{ feed.title }}</title>
+	 		<link>{{ feed.url }}</link>
+	 		<description>Created: {{ feed.creation_date }}</description>
+	 	</item>
+	 {% endfor %}
+	</channel>
+</rss>
