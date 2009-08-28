@@ -21,17 +21,19 @@ class Feed(db.Model):
 def addUrl(url, title):
   feed = Feed()
   feed.url = url
+
+
   if title:
     feed.title = title
   else:
     result = urlfetch.fetch(url, allow_truncated=True)
     if result.status_code == 200:
-       m = re.search('(?<=<title>).*(?=</title>)', result.content)
-       if m.group(0):
-         print m.group(0)
-         feed.title = m.group(0)
-       else:
-         feed.title = url
+      m = re.search('(?<=<title>).*(?=</title>)', result.content)
+      if m.group(0):
+        feed.title = m.group(0)
+
+  if not feed.title:
+    feed.title = url
 
   feed.put()
 
