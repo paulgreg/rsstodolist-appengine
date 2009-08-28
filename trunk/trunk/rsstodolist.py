@@ -56,7 +56,7 @@ class AddPage(webapp.RequestHandler):
     if url:
       addUrl(url, title)
 
-    render(self);
+    self.redirect('/')
 
 
 
