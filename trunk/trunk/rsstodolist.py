@@ -11,17 +11,20 @@ import re
 import os
 from google.appengine.ext.webapp import template
 
+from time import gmtime, strftime
+
 
 class Feed(db.Model):
+  username = db.StringProperty(multiline=False)
   url = db.StringProperty(multiline=False)
   title = db.StringProperty(multiline=False)
   creation_date = db.DateTimeProperty(auto_now_add=True)  
 
 
-def addUrl(url, title):
+def addUrl(url, username, title):
   feed = Feed()
   feed.url = url
-
+  feed.username = username
 
   if title:
     feed.title = title
@@ -37,26 +40,38 @@ def addUrl(url, title):
 
   feed.put()
 
-def render(self):
-  feeds = db.GqlQuery('SELECT * FROM Feed ORDER BY creation_date DESC LIMIT 50')
+def renderRss(self, username):
+  feeds = db.GqlQuery('SELECT * FROM Feed WHERE username = :1 ORDER BY creation_date DESC LIMIT 50', username)
 
   self.response.headers['Content-Type'] = 'application/rss+xml'
   path = os.path.join(os.path.dirname(__file__), 'rss.xml')
   self.response.out.write(template.render(path,	{ 'feeds': feeds } ))
 
+def goToHome(self):
+  self.response.headers['Content-Type'] = 'text/html'
+  self.response.out.write(template.render(os.path.join(os.path.dirname(__file__), 'home.html'), { } ))
+
 class MainPage(webapp.RequestHandler):
   def get(self): 
-    render(self);
+    username = self.request.get('username')
+    if not username:
+      goToHome(self)
+    else:
+      renderRss(self, username)
 
 class AddPage(webapp.RequestHandler):
   def get(self): 
-    url = self.request.get('url')
-    title  = self.request.get('title')
+    username = self.request.get('username')
+    if not username:
+      goToHome(self)
+    else:
+      url = self.request.get('url')
+      title  = self.request.get('title')
 
-    if url:
-      addUrl(url, title)
+      if url:
+        addUrl(url, username, title)
 
-    self.redirect('/')
+      self.redirect('/?username=' + username)
 
 
 
