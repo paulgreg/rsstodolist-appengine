@@ -32,7 +32,7 @@ def addUrl(url, username, title):
       m = re.search('(?<=<title>).*(?=</title>)', result.content)
       if m.group(0):
         h= HTMLParser.HTMLParser()
-        feed.title = h.unescape(m.group(0))
+        feed.title = unicode(h.unescape(m.group(0)), errors='replace')
 
   if not feed.title:
     feed.title = url

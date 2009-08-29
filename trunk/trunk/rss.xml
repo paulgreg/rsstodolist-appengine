@@ -5,7 +5,7 @@
     <link>http://rsstodolist.appspot.com/</link>
     <description>RSS 2.0 feed containing your todolist items</description>
     <language>en-us</language>
-    <webMaster>paulgreg@gmail.com Grégory PAUL</webMaster>
+    <webMaster>paulgreg@gmail.com</webMaster>
 	 {% for feed in feeds %}
 	 	<item>
 			<title>{{ feed.title }}</title>
