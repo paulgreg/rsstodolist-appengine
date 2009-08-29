@@ -11,6 +11,10 @@ import re
 import os
 from google.appengine.ext.webapp import template
 
+
+import HTMLParser
+
+
 from time import gmtime, strftime
 
 
@@ -33,7 +37,8 @@ def addUrl(url, username, title):
     if result.status_code == 200:
       m = re.search('(?<=<title>).*(?=</title>)', result.content)
       if m.group(0):
-        feed.title = m.group(0)
+        h= HTMLParser.HTMLParser()
+        feed.title = h.unescape(m.group(0))
 
   if not feed.title:
     feed.title = url
