@@ -44,7 +44,7 @@ def renderRss(self, username):
 
   self.response.headers['Content-Type'] = 'application/rss+xml'
   path = os.path.join(os.path.dirname(__file__), 'rss.xml')
-  self.response.out.write(template.render(path,	{ 'feeds': feeds } ))
+  self.response.out.write(template.render(path,	{ 'username': username, 'feeds': feeds } ))
 
 def goToHome(self):
   self.response.headers['Content-Type'] = 'text/html'
