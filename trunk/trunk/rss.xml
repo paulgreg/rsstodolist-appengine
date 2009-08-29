@@ -12,13 +12,13 @@
 	 		<link>{{ feed.url }}</link>
 	 		<description>Created: {{ feed.creation_date }}</description>
 			<pubDate>{{ feed.creation_date|date:"r" }}</pubDate>
-			<guid>{{ feed.key }}</guid>
+			<guid isPermaLink="false">{{ feed.key }}</guid>
 	 	</item>
 	 {% endfor %}
 	 	<item>
 			<title>First item in your feed</title>
 	 		<link>http://rsstodolist.appspot.com</link>
-			<guid>1</guid>
+			<guid isPermaLink="false">1</guid>
 	 		<description>First default item</description>
 	 	</item>
 	</channel>
