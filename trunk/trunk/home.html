@@ -30,17 +30,17 @@
 		<h3>1. By using that form :</h3>
 			<form method="get" action="add">
 				<p>
-					<label for="url">URL</label>&nbsp;:&nbsp;<input type="text" id="url" name="url" value="http://www.google.com"/><br/>
-					<label for="username">Username</label>&nbsp;:&nbsp;<input type="text" id="username" name="username" value="yourname"/>
+					<label for="url">URL</label>&nbsp;:&nbsp;<input type="text" id="url" name="url" value="{{ random_url }}"/><br/>
+					<label for="name">Feed name</label>&nbsp;:&nbsp;<input type="text" id="name" name="name" value="somename"/>
 					<input type="submit" />
 				</p>
 			</form>
 		<h3>2. By calling an URL :</h3>
-			<p><a href="/add?username=yourname&amp;url=http://www.google.com">http://rsstodolist.appspot.com/add?username=yourname&amp;url=http://www.google.com</a><br/>(replace <i>yourname</i> by whatever username you want).<br/>
+			<p><a href="/add?name=somename&amp;url={{ random_url }}">http://rsstodolist.appspot.com/add?name=somename&amp;url={{ random_url }}</a><br/>(replace <i>somename</i> by whatever name you want).<br/>
 			Parameter &quot;&amp;title&quot; is optionnal. If not set, app will get &lt;title&gt; from specified url.</p>
 
 		<h2>2. Get your feed :</h2>
-			<p><a href="/add?username=yourname">http://rsstodolist.appspot.com/?username=yourname</a><br/>(replace <i>yourname</i> by whatever username you want).</p>
+			<p><a href="/add?name=somename">http://rsstodolist.appspot.com/?name=somename</a><br/>(replace <i>somename</i> by whatever username you want).</p>
 
 		<h2>3. Feedback</h2>
 			<p>Contact me, Gr&eacute;gory PAUL, for any remark, bug or question.<br/>
