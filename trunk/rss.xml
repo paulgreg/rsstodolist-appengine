@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
-    <title>RSS Todo List - {{ username }}</title>
+    <title>RSS Todo List - {{ name }}</title>
     <link>http://rsstodolist.appspot.com/</link>
     <description>RSS 2.0 feed containing your todolist items</description>
     <language>en-us</language>
@@ -18,7 +18,7 @@
 	 	<item>
 			<title>First item in your feed</title>
 	 		<link>http://rsstodolist.appspot.com</link>
-			<guid isPermaLink="false">1</guid>
+			<guid isPermaLink="false">000001</guid>
 	 		<description>First default item</description>
 	 	</item>
 	</channel>
