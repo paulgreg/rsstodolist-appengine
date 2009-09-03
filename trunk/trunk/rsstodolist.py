@@ -2,15 +2,13 @@ import cgi
 import datetime
 import re
 import os
-import HTMLParser
 
-from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp.util import run_wsgi_app
-from google.appengine.ext import db
 from google.appengine.api import urlfetch
+from google.appengine.ext import webapp
+from google.appengine.ext import db
 from google.appengine.ext.webapp import template
-
+from google.appengine.ext.webapp.util import run_wsgi_app
+from BeautifulSoup import BeautifulStoneSoup
 
 class Feed(db.Model):
   name = db.StringProperty(multiline=False)
@@ -31,8 +29,7 @@ def addUrl(url, name, title):
     if result.status_code == 200:
       m = re.search('(?<=<title>).*(?=</title>)', result.content)
       if m.group(0):
-        h= HTMLParser.HTMLParser()
-        feed.title = unicode(h.unescape(m.group(0)), errors='replace')
+        feed.title = unicode(BeautifulStoneSoup(m.group(0), convertEntities=BeautifulStoneSoup.HTML_ENTITIES ))
 
   if not feed.title:
     feed.title = url
