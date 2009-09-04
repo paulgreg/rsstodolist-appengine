@@ -10,16 +10,9 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 7 times in query history.
+# Used once in query history.
 - kind: Feed
   properties:
   - name: name
-  - name: creation_date
-    direction: desc
-
-# Used 2 times in query history.
-- kind: Feed
-  properties:
-  - name: username
   - name: creation_date
     direction: desc
