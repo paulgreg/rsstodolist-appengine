@@ -27,7 +27,7 @@ def addUrl(url, name, title):
   else:
     result = urlfetch.fetch(url, allow_truncated=True)
     if result.status_code == 200:
-      m = re.search('(?<=<(title|TITLE)>)[^<|^\n]*', result.content)
+      m = re.search('(?<=<(title|TITLE)>)[^<|^\r|^\n]*', result.content)
       if m.group(0):
         feed.title = unicode(BeautifulStoneSoup(m.group(0), convertEntities=BeautifulStoneSoup.HTML_ENTITIES ))
 
