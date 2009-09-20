@@ -25,11 +25,14 @@ def addUrl(url, name, title):
   if title:
     feed.title = title
   else:
-    result = urlfetch.fetch(url, allow_truncated=True)
-    if result.status_code == 200:
-      m = re.search('(?<=<(title|TITLE)>)[^<|^\r|^\n]*', result.content)
-      if m.group(0):
-        feed.title = unicode(BeautifulStoneSoup(m.group(0), convertEntities=BeautifulStoneSoup.HTML_ENTITIES ))
+    try:
+       result = urlfetch.fetch(url, allow_truncated=True)
+       if result.status_code == 200:
+         m = re.search('(?<=<(title|TITLE)>)[^<|^\r|^\n]*', result.content)
+         if m.group(0):
+           feed.title = unicode(BeautifulStoneSoup(m.group(0), convertEntities=BeautifulStoneSoup.HTML_ENTITIES ))
+    except Error:
+      feed.title = url
 
   if not feed.title:
     feed.title = url
