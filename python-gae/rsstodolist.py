@@ -31,7 +31,7 @@ def addUrl(url, name, title):
          m = re.search('(?<=<(title|TITLE)>)[^<|^\r|^\n]*', result.content)
          if m.group(0):
            feed.title = unicode(BeautifulStoneSoup(m.group(0), convertEntities=BeautifulStoneSoup.HTML_ENTITIES ))
-    except Error:
+    except Exception:
       feed.title = url
 
   if not feed.title:
