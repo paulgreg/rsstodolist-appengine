@@ -1,6 +1,5 @@
 import cgi
 import datetime
-import re
 import os
 
 from google.appengine.ext import webapp
@@ -20,7 +19,7 @@ class Feed(db.Model):
 
 class MainPage(webapp.RequestHandler):
   def get(self): 
-    name = self.request.get('name')
+    name = self.request.get('name') or self.request.get('n')
     if not name:
       goToHome(self)
     else:
@@ -29,12 +28,12 @@ class MainPage(webapp.RequestHandler):
 
 class AddPage(webapp.RequestHandler):
   def get(self): 
-    name = self.request.get('name')
+    name = self.request.get('name') or self.request.get('n')
     if not name:
       goToHome(self)
     else:
-      url = self.request.get('url')
-      title  = self.request.get('title')
+      url = self.request.get('url') or self.request.get('u')
+      title  = self.request.get('title') or self.request.get('t')
 
       if url:
         addUrl(url, name, title)
