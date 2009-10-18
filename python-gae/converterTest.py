@@ -16,7 +16,7 @@ class TestConverter(unittest.TestCase):
 
    # Title from http://www.necdisplay.com/NewTechnologies/CurvedDisplay/
    def testConvertRaquo(self):
-     assert converter.convert('NEC Display Solutions &raquo; News & Media &raquo; Media Coverage') == 'NEC Display Solutions - News & Media - Media Coverage'
+     assert converter.convert('NEC Display Solutions &raquo; News & Media &raquo; Media Coverage') == 'NEC Display Solutions - News and Media - Media Coverage'
 
    # Title from http://tempsreel.nouvelobs.com/actualites/societe/20091013.OBS4458/
    def testConvertAccents(self):
