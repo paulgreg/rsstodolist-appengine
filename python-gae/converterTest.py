@@ -19,8 +19,7 @@ class TestConverter(unittest.TestCase):
      assert converter.convert('NEC Display Solutions &raquo; News & Media &raquo; Media Coverage') == 'NEC Display Solutions - News & Media - Media Coverage'
 
    # Title from http://tempsreel.nouvelobs.com/actualites/societe/20091013.OBS4458/
-   def testConvertRaquo(self):
-     print converter.convert('Trois cas de gale ont été signalés à l\'Elysée, Soci&eacute;t&eacute;')
+   def testConvertAccents(self):
      assert converter.convert('Trois cas de gale ont été signalés à l\'Elysée, Soci&eacute;t&eacute;') == 'Trois cas de gale ont été signalés à l\'Elysée, Société'.decode('utf8')
 
 
