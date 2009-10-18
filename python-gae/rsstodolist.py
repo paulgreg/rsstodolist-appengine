@@ -3,13 +3,13 @@ import datetime
 import re
 import os
 
-from google.appengine.api import urlfetch
 from google.appengine.ext import webapp
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
-from converter import Converter
 
+from converter import Converter
+from urlfetcher import UrlFetcher
 
 class Feed(db.Model):
   name = db.StringProperty(multiline=False)
@@ -47,17 +47,13 @@ def addUrl(url, name, title):
   feed.url = url
   feed.name = name
 
-  if title:
-    feed.title = title
-  else:
+  if not title:
     try:
-       result = urlfetch.fetch(url, allow_truncated=True)
-       if result.status_code == 200:
-         m = re.search('(?<=<(title|TITLE)>)[^<|^\r|^\n]*', result.content)
-         if m.group(0):
-           feed.title = converter.convert(m.group(0))
+      title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
     except Exception:
       feed.title = url
+
+  feed.title = converter.convert(title)
 
   if not feed.title:
     feed.title = url
@@ -66,12 +62,10 @@ def addUrl(url, name, title):
 
 
 def goToHome(self):
-  random_url = 'http://www.google.com'
-  result = urlfetch.fetch('http://stackoverflow.com/feeds', allow_truncated=True)
-  if result.status_code == 200:
-    m = re.search('(?<=<id>)http://stackoverflow.com/questions/[0-9]*/', result.content)
-    if m.group(0):
-      random_url = m.group(0)
+  try:
+    random_url = urlFetcher.fetch('http://stackoverflow.com/feeds', '(?<=<id>)http://stackoverflow.com/questions/[0-9]*/')
+  except Exception:
+    random_url = 'http://www.google.com/'
 
   self.response.headers['Content-Type'] = 'text/html'
   path = os.path.join(os.path.dirname(__file__), 'home.html')
@@ -79,7 +73,7 @@ def goToHome(self):
 
 
 def renderRss(self, name):
-  feeds = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC LIMIT 50', name)
+  feeds = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC LIMIT 25', name)
 
   self.response.headers['Content-Type'] = 'application/rss+xml'
   path = os.path.join(os.path.dirname(__file__), 'rss.xml')
@@ -93,4 +87,5 @@ application = webapp.WSGIApplication([
 
 if __name__ == '__main__':
   converter = Converter()
+  urlFetcher = UrlFetcher()
   run_wsgi_app(application)
