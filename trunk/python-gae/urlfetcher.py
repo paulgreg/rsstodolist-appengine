@@ -1,3 +1,5 @@
+import re
+
 from google.appengine.api import urlfetch
 
 class UrlFetcher():
