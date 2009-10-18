@@ -8,4 +8,5 @@ class Converter():
     sanitizedName = BeautifulStoneSoup( nameToClean, convertEntities=BeautifulStoneSoup.HTML_ENTITIES )
     unicodedName = unicode( sanitizedName )
     cleanedName = unicodedName.replace('»'.decode('utf8'), '-')
+    cleanedName = cleanedName.replace('&eacute;', 'é'.decode('utf8'))
     return cleanedName
