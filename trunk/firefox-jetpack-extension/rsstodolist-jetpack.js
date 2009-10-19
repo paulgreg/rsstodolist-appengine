@@ -3,13 +3,13 @@ jetpack.statusBar.append({
     <style><![CDATA[
       body,input {font-family: sans-serif; font-size: 9pt;}
       input#feed { width: 75px; }
-      input#submit { width: 30px; cursor: pointer; }
+      input#submit { cursor: pointer; }
       input { border: 1px solid black; }
       a { border-bottom: 1px dotted blue; cursor: pointer; }
     ]]></style>
     <body><input type="submit" id="submit" value="add url"/> to <a id="link">rsstodolist/?name=</a><input type="text" id="feed" value="somename"/></body>
   </>,
-  width: 260,
+  width: 280,
   onReady: function(widget){
 
     $("#link", widget).click(function(){
