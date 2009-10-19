@@ -4,6 +4,9 @@ runtime: python
 api_version: 1
 
 handlers:
+- url: /imgs
+  static_dir: imgs
+
 - url: /.*
   script: rsstodolist.py
 
