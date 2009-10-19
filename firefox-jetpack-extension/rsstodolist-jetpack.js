@@ -3,7 +3,7 @@ jetpack.statusBar.append({
     <style><![CDATA[
       body,input {font-family: sans-serif; font-size: 9pt;}
       input#feed { width: 75px; }
-      input#submit { cursor: pointer; }
+      input#submit { width: 30px; cursor: pointer; }
       input { border: 1px solid black; }
       a { border-bottom: 1px dotted blue; cursor: pointer; }
     ]]></style>
