@@ -6,3 +6,6 @@ Add random URL on home page
 
  Version 3
 HTML entities replacement in <title> tag
+
+Version 4
+Fix title conversion problem, extract classes, add unit tests
