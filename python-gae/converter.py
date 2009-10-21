@@ -10,4 +10,5 @@ class Converter():
     cleanedName = unicodedName.replace('»'.decode('utf8'), '-')
     cleanedName = cleanedName.replace('&eacute;', 'é'.decode('utf8'))
     cleanedName = cleanedName.replace('&', 'and')
+    cleanedName = cleanedName.replace('<', '{').replace('>', '}')
     return cleanedName
