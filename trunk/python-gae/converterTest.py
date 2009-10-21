@@ -22,6 +22,10 @@ class TestConverter(unittest.TestCase):
    def testConvertAccents(self):
      assert converter.convert('Trois cas de gale ont été signalés à l\'Elysée, Soci&eacute;t&eacute;') == 'Trois cas de gale ont été signalés à l\'Elysée, Société'.decode('utf8')
 
+   # Title from http://stackoverflow.com/questions/1594261/
+   def testConvertTags(self):
+     assert converter.convert('Remove visability on &lt;li&gt; tags except (this) on hover in a menu') == 'Remove visability on {li} tags except (this) on hover in a menu'
+
 if __name__=="__main__":
    converter = Converter()
    unittest.main()
