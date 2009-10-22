@@ -6,7 +6,7 @@ jetpack.statusBar.append({
       body,input {font-family: sans-serif; font-size: 9pt; background-color: transparent; color: black;}
       input#submit { cursor: pointer; width: 50px; background-color: #E3E9EF; }
       input#feed { width: 75px; background-color: #E3E9EF;}
-      input { border: 1px solid black; }
+      input { border: 1px solid grey; }
       a { border-bottom: 1px solid #63ADF5; cursor: pointer; }
     ]]></style>
     <body><input type="submit" id="submit" value="add url"/> to <a id="link">rsstodolist/?name=</a><input type="text" id="feed" value="somename"/></body>
