@@ -9,6 +9,8 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 
 from converter import Converter
 from urlfetcher import UrlFetcher
+from feedNameCleaner import FeedNameCleaner
+
 
 class Feed(db.Model):
   name = db.StringProperty(multiline=False)
@@ -19,7 +21,7 @@ class Feed(db.Model):
 
 class MainPage(webapp.RequestHandler):
   def get(self): 
-    name = self.request.get('name') or self.request.get('n')
+    name = cleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
       goToHome(self)
     else:
@@ -28,7 +30,7 @@ class MainPage(webapp.RequestHandler):
 
 class AddPage(webapp.RequestHandler):
   def get(self): 
-    name = self.request.get('name') or self.request.get('n')
+    name = cleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
       goToHome(self)
     else:
@@ -87,4 +89,5 @@ application = webapp.WSGIApplication([
 if __name__ == '__main__':
   converter = Converter()
   urlFetcher = UrlFetcher()
+  cleaner = FeedNameCleaner()
   run_wsgi_app(application)

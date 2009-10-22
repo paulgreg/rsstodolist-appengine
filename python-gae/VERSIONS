@@ -8,4 +8,4 @@ Add random URL on home page
 HTML entities replacement in <title> tag
 
 Version 4
-Fix title conversion problem, extract classes, add unit tests
+Fix title conversion problem, filter feed names, extract classes, add unit tests
