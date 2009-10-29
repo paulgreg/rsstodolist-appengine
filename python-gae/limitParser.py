@@ -1,5 +1,6 @@
 
 defaultLimit = 25
+maxLimit = 50
 
 class LimitParser():
 
@@ -12,7 +13,9 @@ class LimitParser():
     if numberToClean.isdigit():
       parsedNumber = int(numberToClean)
 
-      if parsedNumber > 0 and parsedNumber <= 50:
+      if parsedNumber > 0:
         valueToReturn = parsedNumber
+      if parsedNumber > maxLimit:
+        valueToReturn = maxLimit
 
     return valueToReturn

@@ -25,8 +25,8 @@ class TestLimitParser(unittest.TestCase):
    def testParseNegativeNumberShouldRetunDefaultLimitValue(self):
      assert parser.parse('-2') == 25
 
-   def testParseNumberSuperiorToUpperBoundShouldRetunDefaultLimitValue(self):
-     assert parser.parse('54') == 25
+   def testParseNumberSuperiorToUpperBoundShouldRetunMaxValue(self):
+     assert parser.parse('54') == 50
 
 
 if __name__=="__main__":
