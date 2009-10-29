@@ -10,6 +10,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from converter import Converter
 from urlfetcher import UrlFetcher
 from feedNameCleaner import FeedNameCleaner
+from limitParser import LimitParser
 
 
 class Feed(db.Model):
@@ -21,16 +22,17 @@ class Feed(db.Model):
 
 class MainPage(webapp.RequestHandler):
   def get(self): 
-    name = cleaner.clean(self.request.get('name') or self.request.get('n'))
+    name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
+    limit = limitParser.parse(self.request.get('limit') or self.request.get('l'))
     if not name:
       goToHome(self)
     else:
-      renderRss(self, name)
+      renderRss(self, name, limit)
 
 
 class AddPage(webapp.RequestHandler):
   def get(self): 
-    name = cleaner.clean(self.request.get('name') or self.request.get('n'))
+    name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
       goToHome(self)
     else:
@@ -73,8 +75,8 @@ def goToHome(self):
   self.response.out.write(template.render(path, { 'random_url': random_url } ))
 
 
-def renderRss(self, name):
-  feeds = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC LIMIT 25', name)
+def renderRss(self, name, limit):
+  feeds = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(limit)
 
   self.response.headers['Content-Type'] = 'application/rss+xml'
   path = os.path.join(os.path.dirname(__file__), 'rss.xml')
@@ -89,5 +91,6 @@ application = webapp.WSGIApplication([
 if __name__ == '__main__':
   converter = Converter()
   urlFetcher = UrlFetcher()
-  cleaner = FeedNameCleaner()
+  feedNameCleaner = FeedNameCleaner()
+  limitParser = LimitParser()
   run_wsgi_app(application)
