@@ -15,11 +15,11 @@
 			<guid isPermaLink="false">{{ feed.key }}</guid>
 	 	</item>
 	 {% endfor %}
-	 {% if not feeds.count %}
+	 {% if not feeds %}
 	 	<item>
 			<title>Default item in your feed</title>
 	 		<link>http://rsstodolist.appspot.com/</link>
-			<guid isPermaLink="false">000001</guid>
+			<guid isPermaLink="false">0000000001</guid>
 	 		<description>Default sample item</description>
 	 	</item>
 	 {% endif %}
