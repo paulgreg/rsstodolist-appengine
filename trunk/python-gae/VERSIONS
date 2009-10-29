@@ -9,3 +9,6 @@ HTML entities replacement in <title> tag
 
 Version 4
 Fix title conversion problem, filter feed names, extract classes, add unit tests
+
+Version 5
+Add limit parameter
