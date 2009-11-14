@@ -26,6 +26,12 @@ class TestConverter(unittest.TestCase):
    def testConvertTags(self):
      assert converter.convert('Remove visability on &lt;li&gt; tags except (this) on hover in a menu') == 'Remove visability on {li} tags except (this) on hover in a menu'
 
+   def testConvertTags(self):
+     assert converter.convert('multi\r\nline') == 'multi line'
+
+   def testConvertTags(self):
+     assert converter.convert('tab\tother tab') == 'tab other tab'
+
 if __name__=="__main__":
    converter = Converter()
    unittest.main()

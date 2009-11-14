@@ -47,19 +47,19 @@ class AddPage(webapp.RequestHandler):
 
 def addUrl(url, name, title):
   feed = Feed()
-  feed.url = url
+  feed.url = url.replace('&', '&amp;')
   feed.name = name
 
   if not title:
     try:
       title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
     except Exception:
-      feed.title = url
+      feed.title = feed.url
 
   feed.title = converter.convert(title)
 
   if not feed.title:
-    feed.title = url
+    feed.title = feed.url
 
   feed.put()
 

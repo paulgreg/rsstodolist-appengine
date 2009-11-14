@@ -11,4 +11,6 @@ class Converter():
     cleanedName = cleanedName.replace('&eacute;', 'é'.decode('utf8'))
     cleanedName = cleanedName.replace('&', 'and')
     cleanedName = cleanedName.replace('<', '{').replace('>', '}')
+    cleanedName = cleanedName.replace('\n', ' ').replace('\r', '')
+    cleanedName = cleanedName.replace('\t', ' ')
     return cleanedName
