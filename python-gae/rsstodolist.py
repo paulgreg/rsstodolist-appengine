@@ -17,7 +17,8 @@ class Feed(db.Model):
   name = db.StringProperty(multiline=False)
   url = db.StringProperty(multiline=False)
   title = db.StringProperty(multiline=False)
-  creation_date = db.DateTimeProperty(auto_now_add=True)  
+  creation_date = db.DateTimeProperty(auto_now_add=True)
+  description = db.StringProperty(multiline=True)
 
 
 class MainPage(webapp.RequestHandler):
@@ -38,30 +39,37 @@ class AddPage(webapp.RequestHandler):
     else:
       url = self.request.get('url') or self.request.get('u')
       title  = self.request.get('title') or self.request.get('t')
+      description = self.request.get('description') or self.request.get('d')
 
       if url:
-        addUrl(url, name, title)
+        addUrl(url, name, title, description)
 
       self.redirect('/?name=' + name)
 
 
-def addUrl(url, name, title):
-  feed = Feed()
-  feed.url = url.replace('&', '&amp;')
-  feed.name = name
+def addUrl(url, name, title, description):
+  formatedUrl = url.replace('&', '&amp;')
 
-  if not title:
-    try:
-      title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
-    except Exception:
-      feed.title = feed.url
+  lastFeed = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(1)
+  if formatedUrl != lastFeed.url
 
-  feed.title = converter.convert(title)
+    feed = Feed()
+    feed.url = formatedUrl
+    feed.name = name
+    fedd.description= description
 
-  if not feed.title:
-    feed.title = feed.url
+    if not title:
+        try:
+        title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
+        except Exception:
+        feed.title = feed.url
 
-  feed.put()
+    feed.title = converter.convert(title)
+
+    if not feed.title:
+        feed.title = feed.url
+
+    feed.put()
 
 
 def goToHome(self):
