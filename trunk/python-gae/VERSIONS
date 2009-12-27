@@ -12,3 +12,6 @@ Fix title conversion problem, filter feed names, extract classes, add unit tests
 
 Version 5
 Add limit parameter
+
+Version 6
+Add description parameter, a delete action & avoid duplicates

@@ -31,7 +31,7 @@ class MainPage(webapp.RequestHandler):
       renderRss(self, name, limit)
 
 
-class AddPage(webapp.RequestHandler):
+class Add(webapp.RequestHandler):
   def get(self): 
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
@@ -51,18 +51,19 @@ def addUrl(url, name, title, description):
   formatedUrl = url.replace('&', '&amp;')
 
   lastFeed = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(1)
-  if formatedUrl != lastFeed.url
+
+  if len(lastFeed) == 0 or formatedUrl != lastFeed[0].url: # Do not add same URL twice !
 
     feed = Feed()
     feed.url = formatedUrl
     feed.name = name
-    fedd.description= description
+    feed.description = converter.convert(description)
 
     if not title:
         try:
-        title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
+          title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
         except Exception:
-        feed.title = feed.url
+          feed.title = feed.url
 
     feed.title = converter.convert(title)
 
@@ -70,6 +71,29 @@ def addUrl(url, name, title, description):
         feed.title = feed.url
 
     feed.put()
+
+
+class Delete(webapp.RequestHandler):
+  def get(self): 
+    name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
+    if not name:
+      goToHome(self)
+    else:
+      url = self.request.get('url') or self.request.get('u')
+
+      if url:
+        removeUrl(url, name)
+
+      self.redirect('/?name=' + name)
+
+
+def removeUrl(url, name):
+  formatedUrl = url.replace('&', '&amp;')
+
+  feed = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 AND url = :2 ORDER BY creation_date DESC', name, url).fetch(1)
+
+  if len(feed) >= 1: # Do not add same URL twice !
+	feed[0].delete()
 
 
 def goToHome(self):
@@ -93,7 +117,8 @@ def renderRss(self, name, limit):
 
 application = webapp.WSGIApplication([
 													('/', MainPage),
-													('/add', AddPage)
+													('/add', Add),
+													('/del', Delete)
 												])
 
 if __name__ == '__main__':

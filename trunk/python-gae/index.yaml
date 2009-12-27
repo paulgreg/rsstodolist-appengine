@@ -15,3 +15,10 @@ indexes:
   - name: name
   - name: creation_date
     direction: desc
+
+- kind: Feed
+  properties:
+  - name: name
+  - name: url
+  - name: creation_date
+    direction: desc
