@@ -55,7 +55,7 @@
 			<ul>
 				<li>By default, the feed title will be fetched from the web page title. You may force it by using the &quot;&amp;title&quot; parameter.</li>
 				<li>Also, by default, your feed will contain 25 items. You can change that by setting &quot;&amp;limit&quot; parameter from 1 to 50.</li>
-				<li>A description may be add by using &quot;description&quot; parameter</li>
+				<li>A description for the link may be added by using the &quot;description&quot; parameter</li>
 				<li>You may also use short parameters like &quot;n&quot; for &quot;name&quot;, &quot;u&quot; for &quot;url&quot;, &quot;t&quot; for &quot;title&quot;, &quot;l&quot; for &quot;limit&quot; or &quot;d&quot; for &quot;description&quot; like that : <a href="/add?n=somename&amp;u={{ random_url }}">/add?n=somename&amp;u={{ random_url }}</a></li>
 			</ul>
 
@@ -67,14 +67,18 @@
 		<h2>2. Get your feed :</h2>
 			<p><a href="/?name=somename">http://rsstodolist.appspot.com/?name=somename</a> or <a href="/?n=somename">http://rsstodolist.appspot.com/?n=somename</a></p>
 
-		<h2>3. Feedback</h2>
+		<h2>3. Remove an URL from your feed</h2>
+		<h3>1. By calling an URL :</h3>
+			<p><a href="/del?name=somename&amp;url={{ random_url }}">http://rsstodolist.appspot.com/del?name=somename&amp;url={{ random_url }}</a></p>
+
+		<h2>4. Feedback</h2>
 			<p>Contact me, Gr&eacute;gory PAUL, for any remark, bug or question.<br/>
 			My username is <strong>paulgreg</strong>, both on gmail and on <a href="http://twitter.com/paulgreg">twitter</a>.</p>
 
-		<h2>4. Privacy</h2>
+		<h2>5. Privacy</h2>
             <p>For now, that service is public and &quot;open&quot;. That means that anyone knowing your feed name may see your items or add new ones.</p>
 
-		<h2>5. Source code</h2>
+		<h2>6. Source code</h2>
             <a class="right" href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" height="31" width="88" /></a>
 			<p>You will find that application's source code on the <a href="http://code.google.com/p/rsstodolist/">dedicated google code project page</a>.</p>
 	</div>
