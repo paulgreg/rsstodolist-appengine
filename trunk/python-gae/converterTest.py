@@ -16,7 +16,7 @@ class TestConverter(unittest.TestCase):
 
    # Title from http://www.necdisplay.com/NewTechnologies/CurvedDisplay/
    def testConvertRaquo(self):
-     assert converter.convert('NEC Display Solutions &raquo; News & Media &raquo; Media Coverage') == 'NEC Display Solutions - News and Media - Media Coverage'
+     assert converter.convert('NEC Display Solutions &raquo; News & Media &raquo; Media Coverage') == 'NEC Display Solutions \' News and Media \' Media Coverage'
 
    # Title from http://tempsreel.nouvelobs.com/actualites/societe/20091013.OBS4458/
    def testConvertAccents(self):
@@ -31,6 +31,9 @@ class TestConverter(unittest.TestCase):
 
    def testConvertTags(self):
      assert converter.convert('tab\tother tab') == 'tab other tab'
+
+   def testConvertAccents(self):
+     assert converter.convert('test de commentaire avec accent : &eacute;&egrave;&ecirc;&icirc;&ocirc;') == 'test de commentaire avec accent : éèêîô'.decode('utf8')
 
 if __name__=="__main__":
    converter = Converter()
