@@ -64,7 +64,7 @@ def addUrl(url, name, title, description):
         try:
           title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
         except Exception, err:
-          log.exception('Error while fetching page title:')
+          logging.exception('Error while fetching page title:')
           feed.title = feed.url
 
     feed.title = converter.convert(title)
@@ -100,9 +100,9 @@ def removeUrl(url, name):
 
 def goToHome(self):
   try:
-    random_url = urlFetcher.fetch('http://stackoverflow.com/feeds', '(?<=<id>)http://stackoverflow.com/questions/[0-9]*/')
+    random_url = urlFetcher.fetch('http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&feed=rss', '(?<=<link>)http://en.wikipedia.org/w/index.php?[^&]*')
   except Exception, err:
-    log.exception('Error while fetching stackoverflow URL:')
+    logging.exception('Error while fetching example URL:')
     random_url = 'http://www.google.com/'
 
   self.response.headers['Content-Type'] = 'text/html'
@@ -125,6 +125,7 @@ application = webapp.WSGIApplication([
 												])
 
 if __name__ == '__main__':
+  logging.getLogger().setLevel(logging.ERROR)
   converter = Converter()
   urlFetcher = UrlFetcher()
   feedNameCleaner = FeedNameCleaner()
