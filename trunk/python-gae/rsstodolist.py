@@ -1,6 +1,7 @@
 import cgi
 import datetime
 import os
+import logging
 
 from google.appengine.ext import webapp
 from google.appengine.ext import db
@@ -62,7 +63,8 @@ def addUrl(url, name, title, description):
     if not title:
         try:
           title = urlFetcher.fetch(url, '(?<=<(title|TITLE)>)[^<|^\r|^\n]*')
-        except Exception:
+        except Exception, err:
+          log.exception('Error while fetching page title:')
           feed.title = feed.url
 
     feed.title = converter.convert(title)
@@ -99,7 +101,8 @@ def removeUrl(url, name):
 def goToHome(self):
   try:
     random_url = urlFetcher.fetch('http://stackoverflow.com/feeds', '(?<=<id>)http://stackoverflow.com/questions/[0-9]*/')
-  except Exception:
+  except Exception, err:
+    log.exception('Error while fetching stackoverflow URL:')
     random_url = 'http://www.google.com/'
 
   self.response.headers['Content-Type'] = 'text/html'
