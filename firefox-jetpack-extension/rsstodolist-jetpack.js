@@ -1,5 +1,6 @@
 jetpack.future.import("storage.simple");
 
+var server = 'http://rsstodolist.appspot.com/';
 var datastore = jetpack.storage.simple;
 var descriptionDefaultMessage = "Your description here";
 
@@ -10,21 +11,25 @@ function send(widget, button) {
     datastore.feed = { name: feedName }; // Saving feed name
 
     var url = jetpack.tabs.focused.url;
+    var encodedUrl = encodeURIComponent(url);
     var action = button.attr('id');
     var done = button.attr('data-done');
     var doing = button.attr('data-doing');
     var description = $('#description',widget).val();
-    var descriptionParam = (description != '' && description != descriptionDefaultMessage) ? '&description=' + escape(description) : '';    
+    var descriptionParam = (description != '' && description != descriptionDefaultMessage) ? '&description=' + encodeURIComponent(description) : '';
     var request = new XMLHttpRequest();
     
-    request.open("GET", "http://rsstodolist.appspot.com/" + action + "?name=" + feedName + "&url=" + url + descriptionParam, true);
+    var rssTodoListUrl = server + action + "?name=" + feedName + "&url=" + encodedUrl + descriptionParam;
+    console.log(rssTodoListUrl);
+    request.open("GET", rssTodoListUrl, true);
+    request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
     request.onreadystatechange = function() {
         if (request.readyState == 4) {
             if (request.status == 200) {
                 $('#description', widget).val(descriptionDefaultMessage);
                 jetpack.notifications.show({title: 'URL '+ done +' to rssdotolist', body: 'URL ['+ url +'] '+ done +' to feed '+feedName});
             } else 
-                    jetpack.notifications.show({title: 'Error while '+ doing +' URL to rssdotolist', body: 'Problem while '+ doing +' URL [' + url + '] to feed '+feedName});
+                jetpack.notifications.show({title: 'Error while '+ doing +' URL to rssdotolist', body: 'Problem while '+ doing +' URL [' + url + '] to feed '+feedName});
         }
     };
     request.send(null);
@@ -58,7 +63,7 @@ jetpack.statusBar.append({
         $("#feed", widget).val(datastore.feed.name); // Restoring last feed name
 
     $("#link", widget).click(function(){
-         var tab = jetpack.tabs.open('http://rsstodolist.appspot.com/?name=' + $("#feed", widget).val());
+         var tab = jetpack.tabs.open(server + '?name=' + $("#feed", widget).val());
          tab.focus();
     });
 
