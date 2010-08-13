@@ -51,6 +51,9 @@ class Add(webapp.RequestHandler):
 def addUrl(url, name, title, description):
   formatedUrl = url.replace('&', '&amp;')
 
+  if name == 'somename' and not url.startswith('http://en.wikipedia.org/'):
+    return # Spam protection for default feed name
+
   lastFeed = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(1)
 
   if len(lastFeed) == 0 or formatedUrl != lastFeed[0].url: # Do not add same URL twice !
