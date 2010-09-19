@@ -4,8 +4,17 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /imgs
-  static_dir: imgs
+- url: /favicon.png
+  static_files: imgs/favicon.png
+  upload: imgs/favicon.png
+
+- url: /favicon.ico
+  static_files: imgs/favicon.ico
+  upload: imgs/favicon.ico
+
+- url: /apple-touch-icon.png
+  static_files: imgs/favicon.png
+  upload: imgs/favicon.png
 
 - url: /.*
   script: rsstodolist.py
