@@ -1,6 +1,6 @@
 
 defaultLimit = 25
-maxLimit = 50
+maxLimit = 100
 
 class LimitParser():
 
