@@ -26,7 +26,7 @@ class TestLimitParser(unittest.TestCase):
      assert parser.parse('-2') == 25
 
    def testParseNumberSuperiorToUpperBoundShouldRetunMaxValue(self):
-     assert parser.parse('54') == 50
+     assert parser.parse('154') == 100
 
 
 if __name__=="__main__":
