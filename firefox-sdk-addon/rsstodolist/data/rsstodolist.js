@@ -20,7 +20,7 @@ function resetField() {
 function initActionsButtons() {
    $("#add").click(postActions);
    $("#del").click(postActions);
-   $("#link").click(postActions); 
+   $("#link").click(postActions);
 }
 function postActions() {
    postMessage({action: $(this).attr("id"), description:$("#description").val(), feed:$("#feed").val()});
