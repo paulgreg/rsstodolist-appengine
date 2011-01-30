@@ -11,7 +11,7 @@ var panel = panels.Panel({
    contentURL: data.url("rsstodolist.html"),
    contentScriptFile: [data.url("jquery.min.js"), data.url("rsstodolist.js")],
    width: 335,
-   height: 35,
+   height: 37,
    onMessage: function(message) {
       if(message == 'ready') {
          transmitInfos();
