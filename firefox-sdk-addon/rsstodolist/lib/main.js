@@ -4,6 +4,7 @@ const panels = require("panel");
 const Request = require('request').Request;
 var data = require("self").data;
 var simpleStorage = require("simple-storage");
+var notifications = require("notifications");
 
 var serverUrl = "http://rsstodolist.appspot.com/";
 
@@ -62,10 +63,19 @@ function requestAddOrDel(message) {
    Request({
       url: url,
       onComplete: function(response){
-         if(response.status == 200)
+         if(response.status == 200) {
             console.log("Sending request OK : " + response.status);
-         else
+            notifications.notify({
+               text: "Le flux " + simpleStorage.storage.feed + " a correctement été mis à jour",
+               iconURL: data.url("icon.png")
+            });
+         } else {
             console.log("Sending request ERROR : " + response.status);
+            notifications.notify({
+               text: "Un problème s'est produit lors de la mise à jour du flux  " + simpleStorage.storage.feed,
+               iconURL: data.url("icon.png")
+            });
+         }
       }
    }).get();
 }

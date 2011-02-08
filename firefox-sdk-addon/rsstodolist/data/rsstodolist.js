@@ -21,6 +21,14 @@ function initActionsButtons() {
    $("#add").click(postActions);
    $("#del").click(postActions);
    $("#link").click(postActions);
+
+   $("#description").keyup(onKeyUp);
+   $("#feed").keyup(onKeyUp);
+}
+
+function onKeyUp(event) {
+   if(event.keyCode == 13)
+      $("#add").click();
 }
 function postActions() {
    postMessage({action: $(this).attr("id"), description:$("#description").val(), feed:$("#feed").val()});
