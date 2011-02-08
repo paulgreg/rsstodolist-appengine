@@ -1,8 +1,0 @@
-{
-  "name": "rsstodolist",
-  "fullName": "RSS TodoList",
-  "description": "Addon for RSS Todo List.",
-  "author": "Grégory Paul, Aurélien Thieriot",
-  "license": "GPL v3",
-  "version": "0.1"
-}
