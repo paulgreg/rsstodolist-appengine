@@ -2,7 +2,7 @@
     "name": "rsstodolist", 
     "license": "GPL v3", 
     "author": "Gr\u00e9gory Paul, Aur\u00e9lien Thieriot", 
-    "version": "0.2", 
+    "version": "0.3", 
     "fullName": "RSS TodoList Addon", 
     "id": "jid0-fsmvHJm6vogjlOsg61W1N560CwA", 
     "description": "Send links to RssTodoList - http://rsstodolist.appspot.com/"
