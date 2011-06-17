@@ -1,10 +1,10 @@
-onMessage = function onMessage(infos) {
+self.on('message', function(infos) {
    if(infos && infos.description) $("#description").val(infos.description);
    if(infos && infos.feed) $("#feed").val(infos.feed);
-};
+});
 
 $(document).ready(function() {
-   postMessage("ready");
+   self.postMessage("ready");
    initResetField();
    initActionsButtons();
 });
@@ -31,5 +31,5 @@ function onKeyUp(event) {
       $("#add").click();
 }
 function postActions() {
-   postMessage({action: $(this).attr("id"), description:$("#description").val(), feed:$("#feed").val()});
+   self.postMessage({action: $(this).attr("id"), description:$("#description").val(), feed:$("#feed").val()});
 }
