@@ -10,7 +10,7 @@ var serverUrl = "http://rsstodolist.appspot.com/";
 
 var panel = panels.Panel({
    contentURL: data.url("rsstodolist.html"),
-   contentScriptFile: [data.url("jquery.min.js"), data.url("rsstodolist.js")],
+   contentScriptFile: [data.url("jquery-1.6.1.min.js"), data.url("rsstodolist.js")],
    width: 335,
    height: 37,
    onMessage: function(message) {
