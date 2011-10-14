@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>global page</title>
+      <style>
+         body 	{	min-width:300px; overflow-x:hidden; }
+         body {font-family: sans-serif; font-size: 9pt; background-color: transparent; color: black;}
+         input#feed { width: 75px; background-color: #E3E9EF;}
+         input#description { width: 150px; background-color: #E3E9EF; }
+         .info { color: green; }
+         .error { color: red; }
+      </style>
+      <script type="text/javascript">
+         var pageURL = null;
+         var rssTodoListServer = 'http://rsstodolist.appspot.com/';  
+         var request = new XMLHttpRequest();
+         safari.application.addEventListener("popover", initPopover, true);
+
+         function init() {
+            var name = localStorage.getItem("rsstodolistfeed");
+            if(name == null) {
+               name = ""
+            }
+            document.getElementById('feed').value = name;
+            document.getElementById('add').onclick = function(){send('add')};
+            document.getElementById('del').onclick = function(){send('del')};
+            document.getElementById('go').onclick = function(){go()};
+         }
+
+         function initPopover() {
+            var currentTab = safari.application.activeBrowserWindow.activeTab;
+            pageURL = currentTab.url;
+            pageTitle = currentTab.title;
+
+            document.getElementById('description').value = pageTitle;
+            info("");
+         }
+
+         function send(action) {
+            var feedName = document.getElementById('feed').value;
+            var feedDescription = document.getElementById('description').value;
+            if(feedName == "") {
+               error("Please, enter a feed name"); 
+               return;
+            }
+            var finalURL = rssTodoListServer + action + "?name=" + feedName + "&url=" + encodeURIComponent(pageURL) + "&title=" + encodeURIComponent(feedDescription);
+            
+		      request.open("GET", finalURL);
+		      request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+            request.onreadystatechange = function() {
+               if(request.readyState == 4) {
+		            if (request.status == 200) {
+		      	      info('URL ['+ pageURL +'] '+ action +' to feed '+feedName);
+                  } else { 
+		               error('Problem while ' + action + ' URL [' + pageURL + '] to feed '+feedName);
+                  }
+               }
+            };
+		      info('Sending URL ['+ pageURL +'] '+ ' to feed '+ feedName);
+		      request.send();
+            saveFeedName(feedName);
+         }
+
+         function go() {
+            var feedName = document.getElementById('feed').value;
+            if(feedName == "") {
+               error("Please, enter a feed name"); 
+               return;
+            }
+            var newTab = safari.application.activeBrowserWindow.openTab();
+            newTab.url = rssTodoListServer + "?name=" + feedName;
+         }
+
+         function error(message) {
+            displayMessage(message, "error");
+         }
+
+         function info(message) {
+            displayMessage(message, "info");
+         }
+
+         function displayMessage(message, className) {
+            var msg = document.getElementById('message')
+            msg.setAttribute("class", className);
+            msg.innerHTML = message;
+         }
+
+         function saveFeedName(name) {
+            try {
+               localStorage.setItem("rsstodolistfeed", name);
+            } catch (e) {
+               if (e == QUOTA_EXCEEDED_ERR) {
+                  error('Internal error :(');
+               } else {
+                  error(e);
+               }
+            }
+         }
+</script>
+   </head>
+   <body onload="init();">
+      <p><b>RSS TodoList</b></p>
+      <p>
+      Feed : <input type="text" id="feed" value="???" placeholder="Feed name" />
+      Description : <input type="text" id="description" value="" placeholder="Description" /><br />
+      <input type="button" id="add" value="Save page" />
+      <input type="button" id="del" value="Remove page" />
+      <input type="button" id="go" value="Go to feed" />
+      <br />
+      <span id="message"></span><br />
+      </p>
+   </body>
+</html>
