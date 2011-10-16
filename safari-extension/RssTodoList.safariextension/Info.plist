@@ -68,6 +68,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://algorithmique.net/rsstodolist/update.plist</string>
 	<key>Website</key>
 	<string>http://rsstodolist.appspot.com/</string>
 </dict>
