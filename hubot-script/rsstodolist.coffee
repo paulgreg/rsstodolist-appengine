@@ -2,8 +2,8 @@
 #
 # http://rsstodolist.appspot.com/ 
 #
-# rtdl show <user_name>       - Display the <user_name> feed url
-# rtdl add <user_name> <link> - Send the <link> to <user_name> feed
+# rtdl show <user_name>       - Display the <user_name> RssToDoList feed url
+# rtdl add <user_name> <link> - Send the <link> to <user_name> RssToDoList feed
 #
 
 module.exports = (robot) ->
