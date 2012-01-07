@@ -8,31 +8,21 @@
 	<meta name="author" content="Gr&eacute;gory Paul"/>
 	<meta name="description" content="An RSS based todo-list"/>
 	<style type="text/css">
-		body { background-color: #3B7CC0; margin: 0 5%; font-family: sans-serif; }
-		#content { background-color: white; padding: 2%; border-right: 3px solid #159EFE; border-left: 3px solid #159EFE; }
-		h1 { color: #159EFE; }
-		h2 { color: #63ADF5; margin: 1em 0.5em 1em 0.5em; }
-		h3 { color: #3B7CC0; margin-left: 2.5em; }
-		p { margin-left: 4em; }
-		ul { margin-left: 3em; list-style-type: square; }
-		label { float: left; width: 7em; text-align: right; }
-		input[name=username] { width: 10em; }
-		input[name=url] { width: 40em; }
-      input[type=submit] { margin-left: 9.5em; }
-		img { border: 0; }
-		.right { float: right; }
-		.warning { font-style: italic; }
+        body { background-color: #3B7CC0; margin: 0 5%; font-family: sans-serif; }
+        #content { background-color: white; padding: 2%; border-right: 3px solid #159EFE; border-left: 3px solid #159EFE; }
+        h1 { color: #159EFE; }
+        h2 { color: #63ADF5; margin: 1em 0.5em 1em 0.5em; }
+        h3 { color: #3B7CC0; margin-left: 2.5em; }
+        p { margin-left: 4em; }
+        ul { margin-left: 3em; list-style-type: square; }
+        label { float: left; width: 7em; text-align: right; }
+        input[name=username] { width: 10em; }
+        input[name=url] { width: 40em; }
+        input[type=submit] { margin-left: 9.5em; }
+        img { border: 0; }
+        .right { float: right; }
+        .warning { font-style: italic; }
 	</style>
-	<script type="text/javascript">
-		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-		try {
-			var pageTracker = _gat._getTracker("UA-10508710-1");
-			pageTracker._trackPageview();
-		} catch(err) {}
-	</script>
 	<link rel="icon" type="image/png" href="/favicon.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<link rel="jetpack" href="http://rsstodolist.googlecode.com/svn/trunk/firefox-jetpack-extension/rsstodolist-jetpack.js" />
@@ -66,10 +56,16 @@
 			<p>Simply drag and drop that <a href="javascript:var rss=prompt('RSS feed name ?');var r=new XMLHttpRequest();r.open('GET', 'http://rsstodolist.appspot.com/add?n='+rss+'&amp;url='+encodeURIComponent(window.location), true);r.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');r.send(null);">rsstodolist bookmarklet</a> to your browser toolbar. Then, clicking on that bookmark will add current page to the RSS feed.</p>
 
 		<h3>4. By using a Google Chrome extension :</h3>
-				<p>A <a href="https://chrome.google.com/extensions/detail/gjnfedompndjcoeannmcppbckbkjhpkd">Google Chrome extension for rsstodolist</a> is available to add current URL by a single click, remove it and access your feed.</p>
+				<p>A <a href="https://chrome.google.com/webstore/search/rsstodolist">Google Chrome extension</a> is available to add current URL by a single click, remove it and access your feed.</p>
 
 		<h3>5. By using a Firefox extension :</h3>
-				<p>A <a href="https://addons.mozilla.org/fr/firefox/addon/rss-todolist-addon/">Firefox 4 extension</a> has been made by Aurélien Thieriot (<a href="http://twitter.com/a_thieriot" title="Aurélien on twitter">@a_thieriot</a>). Many thanks Aurélien !</p>
+				<p>A <a href="https://addons.mozilla.org/fr/firefox/addon/rss-todolist-addon/">Firefox extension</a> has been made by Aurélien Thieriot (<a href="http://twitter.com/a_thieriot" title="Aurélien on twitter">@a_thieriot</a>). Many thanks Aurélien !</p>
+
+		<h3>6. By using a Safari extension :</h3>
+				<p>A <a href="http://algorithmique.net/rsstodolist/RssTodoList.safariextz">Safari extension</a> has been made by Gr&eacute;goire Lejeune (<a href="http://twitter.com/glejeune" title="Gr&eacute;goire on twitter">@glejeune</a>). Many thanks Gr&eacute;goire !</p>
+
+		<h3>7. By using Hubot :</h3>
+        <p>A <a href="http://hubot.github.com/">Hubot</a> <a href="https://github.com/github/hubot-scripts/blob/master/src/scripts/rsstodolist.coffee">script</a> has been made by Aurélien Thieriot (<a href="http://twitter.com/a_thieriot" title="Aurélien on twitter">@a_thieriot</a>). Many thanks Aurélien !</p>
 
 		<h2>2. Get your feed :</h2>
 			<p><a href="/?name=somename">http://rsstodolist.appspot.com/?name=somename</a> or <a href="/?n=somename">http://rsstodolist.appspot.com/?n=somename</a></p>
@@ -87,8 +83,16 @@
 
 		<h2>6. Source code</h2>
             <a class="right" href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" height="31" width="88" /></a>
-			<p>You will find that application's source code on the <a href="http://code.google.com/p/rsstodolist/">dedicated google code project page</a>.</p>
+			<p>You will find the source code for the current application and extensions on the <a href="http://code.google.com/p/rsstodolist/">dedicated google code project page</a>.</p>
 	</div>
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		try {
+			var pageTracker = _gat._getTracker("UA-10508710-1");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
 </body>
 </html>
 
