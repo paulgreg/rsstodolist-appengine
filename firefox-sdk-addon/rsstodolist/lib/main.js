@@ -6,7 +6,7 @@ var data = require("self").data;
 var simpleStorage = require("simple-storage");
 var notifications = require("notifications");
 
-var serverUrl = "http://rsstodolist.appspot.com/";
+var serverUrl = "https://rsstodolist.appspot.com/";
 
 var panel = panels.Panel({
    contentURL: data.url("rsstodolist.html"),
