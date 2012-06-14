@@ -36,23 +36,19 @@ function transmitInfos() {
    var title = tabs.activeTab.title;
    var feed = simpleStorage.storage.feed;
 
-   console.debug('ready - ' + ' description : ' + title + ' feed : ' + feed);
-
    this.panel.postMessage({description: title, feed: feed});
 }
 
 function doAction(message) {
-   console.debug("message - action : " + message.action + " description : " + message.description + " feed : " + message.feed);
    if(message.feed && message.action) {
       simpleStorage.storage.feed = message.feed;
 
       switch(message.action) {
          case "link":
-             console.debug(serverUrl + "?name=" + message.feed);
              tabs.open(serverUrl + "?name=" + message.feed); break;
          case "add": requestAddOrDel(message); break;
          case "del": requestAddOrDel(message); break;
-         default: console.debug(message.action);
+         default: //console.debug(message.action);
       }
    }
    panel.hide();
@@ -60,7 +56,6 @@ function doAction(message) {
 
 function requestAddOrDel(message) {
    var url = constructAddOrDelUrl(message);
-   console.debug(url);
    Request({
       url: url,
       onComplete: function(response){
@@ -70,7 +65,7 @@ function requestAddOrDel(message) {
                iconURL: data.url("icon.png")
             });
          } else {
-            console.error("Sending request ERROR : " + response.status);
+            //console.error("Sending request ERROR : " + response.status);
             notifications.notify({
                text: "Un problème s'est produit lors de la mise à jour du flux  " + simpleStorage.storage.feed,
                iconURL: data.url("icon.png")
