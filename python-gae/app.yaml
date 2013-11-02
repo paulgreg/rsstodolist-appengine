@@ -1,7 +1,8 @@
 application: rsstodolist-hrd
-version: 7
-runtime: python
+version: 8
+runtime: python27
 api_version: 1
+threadsafe: true
 
 handlers:
 - url: /favicon.png
@@ -17,7 +18,5 @@ handlers:
   upload: imgs/favicon.png
 
 - url: /.*
-  script: rsstodolist.py
+  script: rsstodolist.app
 
-builtins:
-- datastore_admin: on

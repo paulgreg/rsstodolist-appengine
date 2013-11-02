@@ -3,16 +3,20 @@ import datetime
 import os
 import logging
 
-from google.appengine.ext import webapp
+import webapp2
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
-from google.appengine.ext.webapp.util import run_wsgi_app
 
 from converter import Converter
 from urlfetcher import UrlFetcher
 from feedNameCleaner import FeedNameCleaner
 from limitParser import LimitParser
 
+logging.getLogger().setLevel(logging.ERROR)
+converter = Converter()
+urlFetcher = UrlFetcher()
+feedNameCleaner = FeedNameCleaner()
+limitParser = LimitParser()
 
 class Feed(db.Model):
   name = db.StringProperty(multiline=False)
@@ -22,7 +26,7 @@ class Feed(db.Model):
   description = db.StringProperty(multiline=True)
 
 
-class MainPage(webapp.RequestHandler):
+class MainPage(webapp2.RequestHandler):
   def get(self): 
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     limit = limitParser.parse(self.request.get('limit') or self.request.get('l'))
@@ -32,7 +36,7 @@ class MainPage(webapp.RequestHandler):
       renderRss(self, name, limit)
 
 
-class Add(webapp.RequestHandler):
+class Add(webapp2.RequestHandler):
   def get(self): 
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
@@ -78,7 +82,7 @@ def addUrl(url, name, title, description):
     feed.put()
 
 
-class Delete(webapp.RequestHandler):
+class Delete(webapp2.RequestHandler):
   def get(self): 
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
@@ -121,16 +125,9 @@ def renderRss(self, name, limit):
   self.response.out.write(template.render(path,	{ 'name': name, 'feeds': feeds } ))
 
 
-application = webapp.WSGIApplication([
-													('/', MainPage),
-													('/add', Add),
-													('/del', Delete)
-												])
+app = webapp2.WSGIApplication([
+    ('/', MainPage),
+    ('/add', Add),
+    ('/del', Delete)
+    ])
 
-if __name__ == '__main__':
-  logging.getLogger().setLevel(logging.ERROR)
-  converter = Converter()
-  urlFetcher = UrlFetcher()
-  feedNameCleaner = FeedNameCleaner()
-  limitParser = LimitParser()
-  run_wsgi_app(application)
