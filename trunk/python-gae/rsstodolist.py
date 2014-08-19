@@ -27,7 +27,7 @@ class Feed(db.Model):
 
 
 class MainPage(webapp2.RequestHandler):
-  def get(self): 
+  def get(self):
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     limit = limitParser.parse(self.request.get('limit') or self.request.get('l'))
     if not name:
@@ -37,7 +37,7 @@ class MainPage(webapp2.RequestHandler):
 
 
 class Add(webapp2.RequestHandler):
-  def get(self): 
+  def get(self):
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
       goToHome(self)
@@ -49,6 +49,7 @@ class Add(webapp2.RequestHandler):
       if url:
         addUrl(url, name, title, description)
 
+      self.response.headers.add_header("Access-Control-Allow-Origin", "*")
       self.redirect('/?name=' + name)
 
 
@@ -83,7 +84,7 @@ def addUrl(url, name, title, description):
 
 
 class Delete(webapp2.RequestHandler):
-  def get(self): 
+  def get(self):
     name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
     if not name:
       goToHome(self)
@@ -93,6 +94,7 @@ class Delete(webapp2.RequestHandler):
       if url:
         removeUrl(url, name)
 
+      self.response.headers.add_header("Access-Control-Allow-Origin", "*")
       self.redirect('/?name=' + name)
 
 
