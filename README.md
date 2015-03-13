@@ -1,6 +1,6 @@
 # rsstodolist-legacy
 
-Note : Automatically exported from code.google.com/p/rsstodolist
+Note : Automatically exported from [code.google.com/p/rsstodolist](http://code.google.com/p/rsstodolist).
 
 [rsstodolist](http://rsstodolist.appspot.com/) is an URL oriented to-read-list based on an RSS XML feed.
 
