@@ -41,7 +41,7 @@
 					<input type="submit" />
 				</p>
 			</form>
-			<p class="warning">Please note that feed &quot;somename&quot; is limited to links from &quot;http://en.wikipedia.org&quot; to prevent spam.</p>
+			<p class="warning">Please note that feed &quot;somename&quot; is limited to links from &quot;https://en.wikipedia.org&quot; to prevent spam.</p>
 		<h3>2. By calling an URL :</h3>
 			<p><a href="/add?name=somename&amp;url={{ random_url }}" rel="nofollow">https://rsstodolist.appspot.com/add?name=somename&amp;url={{ random_url }}</a></p>
 			<ul>
@@ -51,7 +51,7 @@
 				<li>You may also use short parameters like &quot;n&quot; for &quot;name&quot;, &quot;u&quot; for &quot;url&quot;, &quot;t&quot; for &quot;title&quot;, &quot;l&quot; for &quot;limit&quot; or &quot;d&quot; for &quot;description&quot; like that : <a href="/add?n=somename&amp;u={{ random_url }}" rel="nofollow">/add?n=somename&amp;u={{ random_url }}</a></li>
 			</ul>
 
-		<h3>3. By using that <a href="http://en.wikipedia.org/wiki/Bookmarklet" title="Learn more about bookmarklet on Wikipedia">bookmarklet</a> :</h3>
+		<h3>3. By using that <a href="https://en.wikipedia.org/wiki/Bookmarklet" title="Learn more about bookmarklet on Wikipedia">bookmarklet</a> :</h3>
 			<p>Simply drag and drop that <a href="javascript:var rss=prompt('RSS feed name ?');var r=new XMLHttpRequest();r.open('GET', 'https://rsstodolist.appspot.com/add?n='+rss+'&amp;url='+encodeURIComponent(window.location), true);r.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');r.onreadystatechange=function(){if(r.readyState==4){alert('Request sent : '+(r.status===200)+' ('+r.status+')');}};r.send(null);">rsstodolist bookmarklet</a> to your browser toolbar. Then, clicking on that bookmark will add current page to the RSS feed.</p>
 
 		<h3>4. By using a Google Chrome extension :</h3>
@@ -61,7 +61,7 @@
 				<p>A <a href="https://addons.mozilla.org/fr/firefox/addon/rsstodolist/">Firefox extension</a> has been made by Aurélien Thieriot (<a href="https://twitter.com/a_thieriot" title="Aurélien on twitter">@a_thieriot</a>). Many thanks Aurélien !</p>
 
 		<h3>6. By using a Safari extension :</h3>
-				<p>A <a href="http://algorithmique.net/rsstodolist/RssTodoList.safariextz">Safari extension</a> has been made by Gr&eacute;goire Lejeune (<a href="https://twitter.com/glejeune" title="Gr&eacute;goire on twitter">@glejeune</a>). Many thanks Gr&eacute;goire !</p>
+				<p>A <a href="https://algorithmique.net/rsstodolist/RssTodoList.safariextz">Safari extension</a> has been made by Gr&eacute;goire Lejeune (<a href="https://twitter.com/glejeune" title="Gr&eacute;goire on twitter">@glejeune</a>). Many thanks Gr&eacute;goire !</p>
 
 		<h3>7. By using Hubot :</h3>
         <p>A <a href="https://hubot.github.com/">Hubot</a> <a href="https://github.com/github/hubot-scripts/blob/master/src/scripts/rsstodolist.coffee">script</a> has been made by Aurélien Thieriot (<a href="https://twitter.com/a_thieriot" title="Aurélien on twitter">@a_thieriot</a>). Many thanks Aurélien !</p>
@@ -81,11 +81,11 @@
             <p>If you’re concern about privacy, you could host that service on your own server. See below to fetch source code.</p>
 
 		<h2>Source code</h2>
-        <p>Source code can be found : <a class="right" href="http://validator.w3.org/check?uri=referer"><img src="http://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" height="31" width="88" /></a></p>
+        <p>Source code can be found : <a class="right" href="https://validator.w3.org/check?uri=referer"><img src="https://www.w3.org/Icons/valid-xhtml11-blue" alt="Valid XHTML 1.1" height="31" width="88" /></a></p>
         <ul>
-            <li>at <a href="http://code.google.com/p/rsstodolist/">code.google.com/p/rsstodolist/</a> : rsstodolist Google App Engine, Chrome extension and old version of Firefox add-on sources,</li>
+            <li>at <a href="https://github.com/paulgreg/rsstodolist-legacy">/github.com/paulgreg/rsstodolist-legacy</a> : rsstodolist Google App Engine, Chrome extension and old version of Firefox add-on sources,</li>
             <li>at <a href="https://github.com/paulgreg/rsstodolist-server">github.com/paulgreg/rsstodolist-server/</a> : a  django version of rsstodolist that you can host yourself,</li>
-            <li>at <a href="https://github.com/paulgreg/rsstodolist-firefox">github.com/paulgreg/rsstodolist-firefox/</a> : new version of Firefox Add-on.</li>
+            <li>at <a href="https://github.com/paulgreg/rsstodolist-firefox">github.com/paulgreg/rsstodolist-firefox/</a> : new version of Firefox or Chrome Add-on.</li>
         </ul>
 	</div>
 </body>
