@@ -2,7 +2,7 @@
 <rss version="2.0">
   <channel>
     <title>RSS Todo List - {{ name }}</title>
-    <link>http://rsstodolist.appspot.com/?n={{ name }}</link>
+    <link>https://rsstodolist.appspot.com/?n={{ name }}</link>
     <description>RSS 2.0 feed containing your todolist items</description>
     <language>en-us</language>
     <webMaster>paulgreg@gmail.com</webMaster>
@@ -18,7 +18,7 @@
 	 {% if not feeds %}
 	 	<item>
 			<title>Default item in your feed</title>
-	 		<link>http://rsstodolist.appspot.com/</link>
+	 		<link>https://rsstodolist.appspot.com/</link>
 			<guid isPermaLink="false">0000000001</guid>
 	 		<description>Default sample item</description>
 	 	</item>

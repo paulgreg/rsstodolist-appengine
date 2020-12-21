@@ -109,10 +109,10 @@ def removeUrl(url, name):
 
 def goToHome(self):
   try:
-    random_url = urlFetcher.fetch('http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&feed=rss', '(?<=<link>)http://en.wikipedia.org/w/index.php?[^&]*')
+    random_url = urlFetcher.fetch('https://en.wikipedia.org/w/index.php?title=Special:RecentChanges&feed=rss', '(?<=<link>)https://en.wikipedia.org/w/index.php?[^&]*')
   except Exception, err:
     logging.exception('Error while fetching example URL:')
-    random_url = 'http://www.google.com/'
+    random_url = 'https://en.wikipedia.org/'
 
   self.response.headers['Content-Type'] = 'text/html'
   path = os.path.join(os.path.dirname(__file__), 'home.html')
