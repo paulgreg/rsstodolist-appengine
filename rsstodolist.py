@@ -56,9 +56,6 @@ class Add(webapp2.RequestHandler):
 def addUrl(url, name, title, description):
   formatedUrl = url.replace('&', '&amp;')
 
-  if name == 'somename' and not url.startswith('http://en.wikipedia.org/'):
-    return # Spam protection for default feed name
-
   lastFeed = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(1)
 
   if len(lastFeed) == 0 or formatedUrl != lastFeed[0].url: # Do not add same URL twice !
@@ -108,15 +105,9 @@ def removeUrl(url, name):
 
 
 def goToHome(self):
-  try:
-    random_url = urlFetcher.fetch('https://en.wikipedia.org/w/index.php?title=Special:RecentChanges&feed=rss', '(?<=<link>)https://en.wikipedia.org/w/index.php?[^&]*')
-  except Exception, err:
-    logging.exception('Error while fetching example URL:')
-    random_url = 'https://en.wikipedia.org/'
-
   self.response.headers['Content-Type'] = 'text/html'
   path = os.path.join(os.path.dirname(__file__), 'home.html')
-  self.response.out.write(template.render(path, { 'random_url': random_url } ))
+  self.response.out.write(template.render(path, {}))
 
 
 def renderRss(self, name, limit):

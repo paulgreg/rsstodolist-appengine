@@ -15,9 +15,10 @@
         h3 { color: #3B7CC0; margin-left: 2.5em; }
         p { margin-left: 4em; }
         ul { margin-left: 3em; list-style-type: square; }
+        input { margin: .25em; }
         input[name=username] { width: 10em; }
         input[name=url] { width: 40em; }
-        input[type=submit] { margin: 1em  0; }
+        input[type=submit] { margin: .5em  0; }
         img { border: 0; }
         .right { float: right; }
         .warning { font-style: italic; }
@@ -34,25 +35,23 @@
 		<h3>1. By using that form :</h3>
 		<form method="get" action="add">
 			<p>
-				<label for="url">URL</label>&nbsp;:&nbsp;<input type="text" id="url" name="url" value="{{ random_url }}"/><br/>
-				<label for="name">Feed name</label>&nbsp;:&nbsp;<input type="text" id="name" name="name" value="somename"/>
-					replace by whatever name you want<br/>
+				<label for="url">URL</label>&nbsp;:&nbsp;<input type="text" id="url" name="url" placeholder="https://example.com/"><br/>
+				<label for="name">Feed name</label>&nbsp;:&nbsp;<input type="text" id="name" name="name" placeholder="somename"/><br/>
 				<input type="submit" />
 			</p>
 		</form>
-		<p class="warning">Please note that feed &quot;somename&quot; is limited to links from &quot;https://en.wikipedia.org&quot; to prevent spam.</p>
 
 		<h3>2. Via a browser extension :</h3>
 		<p>A <a href="https://chrome.google.com/webstore/detail/gjnfedompndjcoeannmcppbckbkjhpkd">Google Chrome extension</a> and a <a href="https://addons.mozilla.org/fr/firefox/addon/rsstodolist/">Firefox addon</a>
 			are available to manage your feeds.</p>
 
 		<h3>3. By calling an URL :</h3>
-		<p><a href="/add?name=somename&amp;url={{ random_url }}" rel="nofollow">https://rsstodolist.appspot.com/<b>add</b>?name=somename&amp;url={{ random_url }}</a></p>
+		<p><a href="/add?name=somename&amp;url=https://example.com/" rel="nofollow">https://rsstodolist.appspot.com/<b>add</b>?name=somename&amp;url=https://example.com/</a></p>
 		<ul>
 			<li>By default, the feed title will be fetched from the web page title. You may force it by using the &quot;&amp;title&quot; parameter.</li>
 			<li>Also, by default, your feed will contain 25 items. You can change that by setting &quot;&amp;limit&quot; parameter from 1 to 100.</li>
 			<li>A description for the link may be added by using the &quot;description&quot; parameter</li>
-			<li>You may also use short parameters like &quot;n&quot; for &quot;name&quot;, &quot;u&quot; for &quot;url&quot;, &quot;t&quot; for &quot;title&quot;, &quot;l&quot; for &quot;limit&quot; or &quot;d&quot; for &quot;description&quot; like that : <a href="/add?n=somename&amp;u={{ random_url }}" rel="nofollow">/add?n=somename&amp;u={{ random_url }}</a></li>
+			<li>You may also use short parameters like &quot;n&quot; for &quot;name&quot;, &quot;u&quot; for &quot;url&quot;, &quot;t&quot; for &quot;title&quot;, &quot;l&quot; for &quot;limit&quot; or &quot;d&quot; for &quot;description&quot; like that : <a href="/add?n=somename&amp;u=https://example.com/" rel="nofollow">/add?n=somename&amp;u=https://example.com/</a></li>
 		</ul>
 
 		<h3>4. By using that <a href="https://en.wikipedia.org/wiki/Bookmarklet" title="Learn more about bookmarklet on Wikipedia">bookmarklet</a> :</h3>
@@ -64,20 +63,20 @@
 
 		<h2>Remove an URL from your feed</h2>
 		<h3>By calling an URL :</h3>
-		<p><a href="/del?name=somename&amp;url={{ random_url }}" rel="nofollow">https://rsstodolist.appspot.com/<b>del</b>?name=somename&amp;url={{ random_url }}</a></p>
+		<p><a href="/del?name=somename&amp;url=https://example.com/" rel="nofollow">https://rsstodolist.appspot.com/<b>del</b>?name=somename&amp;url=https://example.com/</a></p>
 
 		<h2>Feedback</h2>
 		<p>Contact me on twitter (<a href="https://twitter.com/paulgreg">@paulgreg</a>) or at gmail (my username is paulgreg).</p>
 
 		<h2>Privacy</h2>
 		<p>That service is public and &quot;open&quot;. That means that anyone knowing your feed name may see your items, add or remove new ones.</p>
-		<p>If you’re concern about privacy, you could host that service on your own server (see below).</p>
+		<p>For more security & privacy, you could self-host the service (see links below).</p>
 
 		<h2>Related projects</h2>
         <ul>
             <li><a href="https://github.com/paulgreg/rsstodolist-node-server">rsstodolist-node-server</a> : a nodejs version that you can self-host,</li>
             <li><a href="https://github.com/paulgreg/rsstodolist-django-server">rsstodolist-django-server</a> : a django version that you can self-host,</li>
-            <li><a href="https://github.com/paulgreg/rsstodolist-appengine">rsstodolist-appengine</a> : rsstodolist.appspot.com source code,</li>
+            <li><a href="https://github.com/paulgreg/rsstodolist-appengine">rsstodolist-appengine</a> : the current site source code,</li>
             <li><a href="https://github.com/paulgreg/rsstodolist-addon">rsstodolist-addon</a> : extension source code for Chrome / Firefox.</li>
         </ul>
 	</div>
