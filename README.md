@@ -17,6 +17,10 @@ But, instead of using the public server (rsstodolist.appspot.com), you can also 
   * [rsstodolist-appengine](https://github.com/paulgreg/rsstodolist-appengine) : rsstodolist.appspot.com source code
   * [browser addon](https://github.com/paulgreg/rsstodolist-addon) : a browser (Chrome/Firefox) addon
 
+## To run locally
+
+    dev_appserver.py .
+
 ## To deploy
 
     gcloud app deploy .
