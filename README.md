@@ -20,4 +20,4 @@ Note : Project was exported from [code.google.com/p/rsstodolist](https://code.go
 
 ## To deploy
 
-    gcloud app deploy python-gae/
+    gcloud app deploy .
