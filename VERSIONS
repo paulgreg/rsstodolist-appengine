@@ -15,3 +15,6 @@ Add limit parameter
 
 Version 6
 Add description parameter, a delete action & avoid duplicates
+
+Version 7
+Refresh urls and image, add xslt
