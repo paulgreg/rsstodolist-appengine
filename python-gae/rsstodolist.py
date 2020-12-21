@@ -123,7 +123,7 @@ def renderRss(self, name, limit):
   feeds = db.GqlQuery('SELECT * FROM Feed WHERE name = :1 ORDER BY creation_date DESC', name).fetch(limit)
 
   self.response.headers.add_header("Access-Control-Allow-Origin", "*")
-  self.response.headers['Content-Type'] = 'application/rss+xml'
+  self.response.headers['Content-Type'] = 'text/xml'
   path = os.path.join(os.path.dirname(__file__), 'rss.xml')
   self.response.out.write(template.render(path,	{ 'name': name, 'feeds': feeds } ))
 
