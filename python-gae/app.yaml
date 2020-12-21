@@ -11,6 +11,14 @@ handlers:
   static_files: imgs/favicon.png
   upload: imgs/favicon.png
 
+- url: /static/rss.xslt
+  static_files: static/rss.xslt
+  upload: static/rss.xslt
+
+- url: /static/rss.css
+  static_files: static/rss.css
+  upload: static/rss.css
+
 - url: /.*
   script: rsstodolist.app
 
