@@ -13,7 +13,7 @@ But, instead of using the public server (rsstodolist.appspot.com), you can also 
 ## Related projects
 
   * [node server](https://github.com/paulgreg/rsstodolist-node-server) : a node js implementation to host the service on your server,
-  * [django server](https://github.com/paulgreg/rsstodolist-server) : a django implementation to host the service on your server (not maintained anymore)
+  * [django server](https://github.com/paulgreg/rsstodolist-django-server) : a django implementation to host the service on your server (not maintained anymore)
   * [rsstodolist-appengine](https://github.com/paulgreg/rsstodolist-appengine) : rsstodolist.appspot.com source code
   * [browser addon](https://github.com/paulgreg/rsstodolist-addon) : a browser (Chrome/Firefox) addon
 
