@@ -7,6 +7,14 @@
     <description>RSS 2.0 feed containing your todolist items</description>
     <language>en-us</language>
     <webMaster>paulgreg@gmail.com</webMaster>
+	 {% if feeds|length > 5 %}
+	 	<item>
+			<title>Please consider self-hosting rsstodolist service</title>
+	 		<link>https://rsstodolist.appspot.com/</link>
+			<guid isPermaLink="false">0000000002</guid>
+	 		<description>If you’re relying on that service, consider self-host the service for more reliability and privacy.</description>
+	 	</item>
+	 {% endif %}
 	 {% for feed in feeds %}
 	 	<item>
 			<title>{{ feed.title }}</title>
