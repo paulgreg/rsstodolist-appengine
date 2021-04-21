@@ -28,8 +28,16 @@
 <body>
 	<div id="content">
 		<h1>rsstodolist</h1>
-		<p>rsstodolist is an URL oriented to-read-list based on an RSS XML feed. Typical use case is to save web pages to read later on a RSS feed.</p>
+		<p>rsstodolist is an URL oriented to-read-list based on an RSS XML feed. Typical use case is to save web pages to read later via an RSS feed viewer.</p>
 
+		<h2>Self-hosting for more privacy &amp; reliability</h2>
+		<p>That service is public and « open ». That means anyone knowing your feed name may see your items, add or remove them.
+		</p>
+		<p>Also, that service is hosted via free plan on Google AppEngine with some limitations (like 500 errors when daily
+			quota is reached).</p>
+		<p>So, for more reliability and more privacy, I <strong>strongly</strong> suggest you to self-host that application(see
+			<a href="#related">related projects below</a>).</p>
+		
 		<h2>Add an entry to your feed</h2>
 
 		<h3>1. By using that form :</h3>
@@ -66,20 +74,24 @@
 		<p><a href="/del?name=somename&amp;url=https://example.com/" rel="nofollow">https://rsstodolist.appspot.com/<b>del</b>?name=somename&amp;url=https://example.com/</a></p>
 
 		<h2>Feedback</h2>
-		<p>Contact me on twitter (<a href="https://twitter.com/paulgreg">@paulgreg</a>) or at gmail (my username is paulgreg).</p>
+		<p>Please contact me via <a href="https://paulgreg.me/">paulgreg.me</a>.</p>
 
-		<h2>Privacy</h2>
-		<p>That service is public and &quot;open&quot;. That means that anyone knowing your feed name may see your items, add or remove new ones.</p>
-		<p>For more security & privacy, you could self-host the service (see links below).</p>
-
-		<h2>Related projects</h2>
-        <ul>
-			<li><a href="https://github.com/paulgreg/rsstodolist-appengine">rsstodolist-appengine</a> : source code for the current application, running on <a href="https://cloud.google.com/appengine/">Google AppEngine</a>,</li>
-            <li><a href="https://github.com/paulgreg/rsstodolist-node-server">rsstodolist-node-server</a> : a nodejs version that you can self-host,</li>
-            <li><a href="https://github.com/paulgreg/rsstodolist-django-server">rsstodolist-django-server</a> : a django version that you can self-host,</li>
-            <li><a href="https://github.com/paulgreg/rsstodolist-addon">rsstodolist-addon</a> : extension source code for Chrome / Firefox.</li>
-        </ul>
-	</div>
+		<h2 id="related">Related projects and source code</h2>
+		<ul>
+			<li>I’m currently trying heroku to eventually migrate service there : <a
+					href="https://rsstodolist.herokuapp.com/">https://rsstodolist.herokuapp.com/</a></li>
+			<li><a href="https://github.com/paulgreg/rsstodolist-node-server">rsstodolist-node-server</a> : a nodejs version
+				that you can self-host (can be run via docker)</li>
+			<li><a href="https://github.com/paulgreg/rsstodolist-django-server">rsstodolist-django-server</a> : a python/django
+				version that you can self-host (not maintained anymore)</li>
+			<li><a href="https://github.com/paulgreg/rsstodolist-addon">rsstodolist-addon</a> : extension source code for Chrome
+				extension and Firefox addon</li>
+			<li><a href="https://github.com/paulgreg/rsstodolist-react-native">rsstodolist-react-native</a> : a react-native
+				application for Android</li>
+			<li><a href="https://github.com/paulgreg/rsstodolist-appengine">rsstodolist-appengine</a> : source code for the
+				current application, running on <a href="https://cloud.google.com/appengine/">Google AppEngine</a></li>
+		</ul>
+		</div>
 </body>
 </html>
 
