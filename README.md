@@ -1,6 +1,16 @@
 # rsstodolist-appengine
 
-[rsstodolist](https://rsstodolist.appspot.com/) is an URL oriented to-read-list based on an RSS XML feed, running on [Google AppEngine](https://cloud.google.com/appengine/) python.
+## Status
+
+Since I’m not able to deploy a new version of that app anymore, I’m ending the service at [rsstodolist.appspot.com](https://rsstodolist.appspot.com/).
+
+The service is now available at [rsstodolist.herokuapp.com](https://rsstodolist.herokuapp.com/) using the [nodejs version of the app](https://github.com/paulgreg/rsstodolist-node-server) that you can self-host.
+
+
+*****
+
+
+rsstodolist is an URL oriented to-read-list based on an RSS XML feed, running on [Google AppEngine](https://cloud.google.com/appengine/) python.
 
 Typical use case is to save web pages to read later on a RSS feed.
 
