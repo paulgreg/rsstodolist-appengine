@@ -28,12 +28,7 @@ class Feed(db.Model):
 
 class MainPage(webapp2.RequestHandler):
   def get(self):
-    name = feedNameCleaner.clean(self.request.get('name') or self.request.get('n'))
-    limit = limitParser.parse(self.request.get('limit') or self.request.get('l'))
-    if not name:
-      goToHome(self)
-    else:
-      renderRss(self, name, limit)
+    self.redirect('https://rsstodolist.eu/', permanent=True)
 
 
 class Add(webapp2.RequestHandler):
@@ -121,7 +116,5 @@ def renderRss(self, name, limit):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/add', Add),
-    ('/del', Delete)
     ])
 

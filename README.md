@@ -2,9 +2,7 @@
 
 ## Status
 
-Since I’m not able to deploy a new version of that app anymore, I’m ending the service at [rsstodolist.appspot.com](https://rsstodolist.appspot.com/).
-
-The service is now available at [rsstodolist.herokuapp.com](https://rsstodolist.herokuapp.com/) using the [nodejs version of the app](https://github.com/paulgreg/rsstodolist-node-server) that you can self-host.
+I’m ending the service at [rsstodolist.appspot.com](https://rsstodolist.appspot.com/) and moving it to [rsstodolist.eu](https://rsstodolist.eu/) using the [nodejs version of the app](https://github.com/paulgreg/rsstodolist-node-server) that you can self-host.
 
 
 *****
